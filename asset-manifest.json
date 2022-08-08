@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PokeTab/static/css/main.256fdda8.css",
+    "main.js": "/PokeTab/static/js/main.cebea7d6.js",
+    "static/js/787.aca97ea4.chunk.js": "/PokeTab/static/js/787.aca97ea4.chunk.js",
+    "index.html": "/PokeTab/index.html",
+    "main.256fdda8.css.map": "/PokeTab/static/css/main.256fdda8.css.map",
+    "main.cebea7d6.js.map": "/PokeTab/static/js/main.cebea7d6.js.map",
+    "787.aca97ea4.chunk.js.map": "/PokeTab/static/js/787.aca97ea4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.256fdda8.css",
+    "static/js/main.cebea7d6.js"
+  ]
+}
