@@ -20,8 +20,15 @@ function App() {
   });
 
   const searchPokemon = () => {
+    if (!pokemonName) {
+      setError('Please enter a Pokémon name.');
+      return;
+    }
+
     setIsLoading(true);
     setError('');
+    setShowPokemon(false);
+
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response) => {
       setPokemon({
         name: pokemonName,
@@ -35,7 +42,7 @@ function App() {
       })
       setShowPokemon(true);
     })
-      .catch((error) => {
+      .catch(() => {
         setError('Pokemon not found');
       })
       .finally(() => {
@@ -55,6 +62,11 @@ function App() {
           </div>
         </div>
         <div className="container px-5 py-6 mx-auto justify-center items-center">
+          {!showPokemon && (
+            <h1 className="flex justify-center items-center sm:text-4xl mb-6 text-3xl font-bold text-purple-900">
+              Choose your Pokemon
+            </h1>
+          )}
           <div className="flex flex-wrap justify-center items-center">
             <div className="search flex sm:mr-4">
               <input value={pokemonName} onChange={(event) => { setPokemonName(event.target.value.toLowerCase()) }} type="text" id="footer-field" name="footer-field" placeholder='Enter Pokemon Name' className="w-full bg-gray-100 bg-opacity-50 rounded border-4 border-purple-900 focus:ring-2 focus:bg-transparent focus:ring-indigo-200 focus:border-purple-400 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
@@ -62,14 +74,17 @@ function App() {
             <button onClick={searchPokemon} className="inline-flex mt-2 md:mt-0 text-yellow-400 text-lg font-semibold bg-purple-800 border-0 py-2 px-6 focus:outline-non rounded">Search Pokemon</button>
           </div>
         </div>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
       </section>
       {/* Header */}
+      {error && <p className="text-red-500 flex justify-center">{error}</p>}
       {/* Pokemon */}
       <div className="displaySection">
-        {!showPokemon ? (<h1 className='flex justify-center items-center sm:text-4xl text-3xl font-bold text-purple-900'>Choose your Pokemon</h1>) : (
-          <section className="overflow-hidden">
+        {isLoading ? (
+          <div className="flex justify-center items-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-purple-800"></div>
+          </div>
+        ) : !showPokemon ? (<></>) :
+          (<section className="overflow-hidden">
             <div className="container px-5 lg:py-16 mx-auto">
               <div className="lg:w-full mx-auto flex flex-wrap justify-center items-center">
                 <img className="lg:w-72 w-full sm:w-96 object-cover object-center rounded" alt={pokemon.name} src={pokemon.img} />
@@ -87,7 +102,7 @@ function App() {
               </div>
             </div>
           </section>
-        )}
+          )}
       </div>
       {/* Pokemon */}
     </>
