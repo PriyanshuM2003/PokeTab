@@ -76,7 +76,7 @@ function App() {
         </div>
       </section>
       {/* Header */}
-      {error && <p className="text-red-500 flex justify-center">{error}</p>}
+      {error && <p className="text-red-500 font-semibold text-4xl flex justify-center">{error}</p>}
       {/* Pokemon */}
       <div className="displaySection">
         {isLoading ? (
