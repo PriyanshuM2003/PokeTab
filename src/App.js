@@ -29,7 +29,8 @@ function App() {
         ability: response.data.abilities[0].ability.name,
         weight: response.data.weight,
       })
-      setShowPokemon(true)
+      setShowPokemon(true);
+      setPokemonName('');
     })
   }
 
@@ -43,10 +44,10 @@ function App() {
             <h6 className='text-lg md:text-2xl font-semibold text-gray-200'>Get all the info of your favourite Pokemon</h6>
           </div>
         </div>
-        <div className="container px-5 py-6 flex flex-wrap mx-auto justify-center items-center">
-          <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
-            <div className="flex sm:w-72 w-56 sm:mr-4 mr-2">
-              <input onChange={(event) => { setPokemonName(event.target.value) }} type="text" id="footer-field" name="footer-field" placeholder='Enter pokemon name in lowercase' className="w-full bg-gray-100 bg-opacity-50 rounded border-4 border-purple-900 focus:ring-2 focus:bg-transparent focus:ring-indigo-200 focus:border-purple-400 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+        <div className="container px-5 py-6 mx-auto justify-center items-center">
+          <div className="flex flex-wrap justify-center items-center">
+            <div className="search flex sm:mr-4">
+              <input value={pokemonName} onChange={(event) => { setPokemonName(event.target.value.toLowerCase()) }} type="text" id="footer-field" name="footer-field" placeholder='Enter Pokemon Name' className="w-full bg-gray-100 bg-opacity-50 rounded border-4 border-purple-900 focus:ring-2 focus:bg-transparent focus:ring-indigo-200 focus:border-purple-400 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
             </div>
             <button onClick={searchPokemon} className="inline-flex mt-2 md:mt-0 text-yellow-400 text-lg font-semibold bg-purple-800 border-0 py-2 px-6 focus:outline-non rounded">Search Pokemon</button>
           </div>
@@ -57,11 +58,11 @@ function App() {
       <div className="displaySection">
         {!showPokemon ? (<h1 className='flex justify-center items-center text-4xl font-bold text-purple-900'>Choose your Pokemon</h1>) : (
           <section className="overflow-hidden">
-            <div className="container px-5 py-16 mx-auto">
+            <div className="container px-5 lg:py-16 mx-auto">
               <div className="lg:w-full mx-auto flex flex-wrap justify-center items-center">
-                <img className="lg:w-72 w-full lg:h-72 h-64 object-cover object-center rounded" alt={pokemon.name} src={pokemon.img} />
+                <img className="lg:w-72 w-full sm:w-96 object-cover object-center rounded" alt={pokemon.name} src={pokemon.img} />
                 <div className='lg:w-9/12 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 flex flex-wrap'>
-                  <h1 className="flex justify-center items-center text-purple-900 text-5xl title-font capitalize font-medium md:mb-4 md:m-auto ml-12">{pokemon.name}</h1>
+                  <h1 className="flex justify-center items-center text-purple-900 text-5xl title-font capitalize font-medium mx-auto">{pokemon.name}</h1>
                   <div className="grid grid-rows-1 space-x-1 md:grid-cols-3 lg:w-full w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h1 className="flex text-gray-900 text-3xl title-font font-medium mb-1 box-content h-8 w-auto p-4 border-4 items-center justify-center bg-gray-300">Type: {pokemon.type}</h1>
                     <h1 className="flex text-gray-900 text-3xl title-font font-medium mb-1 box-content h-8 w-auto p-4 border-4 items-center justify-center bg-green-500">HP: {pokemon.hp}</h1>
