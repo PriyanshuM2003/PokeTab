@@ -4,6 +4,8 @@ import Axios from 'axios';
 
 function App() {
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const [pokemonName, setPokemonName] = useState('');
   const [showPokemon, setShowPokemon] = useState(false);
   const [pokemon, setPokemon] = useState({
@@ -18,6 +20,8 @@ function App() {
   });
 
   const searchPokemon = () => {
+    setIsLoading(true);
+    setError('');
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response) => {
       setPokemon({
         name: pokemonName,
@@ -30,8 +34,14 @@ function App() {
         weight: response.data.weight,
       })
       setShowPokemon(true);
-      setPokemonName('');
     })
+      .catch((error) => {
+        setError('Pokemon not found');
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setPokemonName('');
+      });
   }
 
   return (
@@ -52,6 +62,8 @@ function App() {
             <button onClick={searchPokemon} className="inline-flex mt-2 md:mt-0 text-yellow-400 text-lg font-semibold bg-purple-800 border-0 py-2 px-6 focus:outline-non rounded">Search Pokemon</button>
           </div>
         </div>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
       </section>
       {/* Header */}
       {/* Pokemon */}
