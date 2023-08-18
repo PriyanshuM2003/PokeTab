@@ -56,7 +56,7 @@ function App() {
       {/* Header */}
       {/* Pokemon */}
       <div className="displaySection">
-        {!showPokemon ? (<h1 className='flex justify-center items-center text-4xl font-bold text-purple-900'>Choose your Pokemon</h1>) : (
+        {!showPokemon ? (<h1 className='flex justify-center items-center sm:text-4xl text-3xl font-bold text-purple-900'>Choose your Pokemon</h1>) : (
           <section className="overflow-hidden">
             <div className="container px-5 lg:py-16 mx-auto">
               <div className="lg:w-full mx-auto flex flex-wrap justify-center items-center">
