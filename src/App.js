@@ -59,7 +59,7 @@ function App() {
           <section className="overflow-hidden">
             <div className="container px-5 py-16 mx-auto">
               <div className="lg:w-full mx-auto flex flex-wrap justify-center items-center">
-                <img className="lg:w-72 w-full lg:h-72 h-64 object-cover object-center rounded" src={pokemon.img} />
+                <img className="lg:w-72 w-full lg:h-72 h-64 object-cover object-center rounded" alt={pokemon.name} src={pokemon.img} />
                 <div className='lg:w-9/12 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 flex flex-wrap'>
                   <h1 className="flex justify-center items-center text-purple-900 text-5xl title-font capitalize font-medium md:mb-4 md:m-auto ml-12">{pokemon.name}</h1>
                   <div className="grid grid-rows-1 space-x-1 md:grid-cols-3 lg:w-full w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
